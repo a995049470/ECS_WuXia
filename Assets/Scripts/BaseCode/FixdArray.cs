@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-public unsafe struct FixdCharArray
+public unsafe struct FixedArray<T> where T : unmanaged
 {
-    private char* m_ptr;
-    private int m_totalLength;
-    private int m_realLength;
-    public FixdCharArray(int totalLen)
+    private T* m_ptr;
+    private int m_length;
+    private int m_step;
+    public FixedArray(int length)
     {
-        IntPtr ptr = Marshal.AllocHGlobal(sizeof(char) * totalLen);
-        m_ptr = (char*)ptr.ToPointer();
-        m_totalLength = totalLen;
-        m_realLength = 0;
+        m_length = length;
+        m_step = sizeof(T);
+        m_ptr = (T*)Marshal.AllocHGlobal(m_step * length).ToPointer();
     }
     
     public void Dispose()
@@ -18,18 +17,12 @@ public unsafe struct FixdCharArray
         Marshal.FreeHGlobal(new IntPtr(m_ptr));
     }
 
-    public void SetValue(char[] charAry)
+    public ref T this[int index]
     {
-        
-    }
-    public char[] GetCharArray()
-    {
-        char[] res = new char[m_realLength];
-        for (int i = 0; i < m_realLength; i++)
+        get
         {
-            res[i] = *(m_ptr + sizeof(char) * i);
+            return ref *(m_ptr + m_step * index);
         }
-        return res;
     }
 }
 
