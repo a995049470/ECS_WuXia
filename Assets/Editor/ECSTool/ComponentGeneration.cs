@@ -88,20 +88,23 @@ namespace ECSTool
             int endRow = sheet.Dimension.End.Row + 1;
             int stratColumn = sheet.Dimension.Start.Column;
             int endColumn = sheet.Dimension.End.Column + 1;
+            //Debug.Log($"startRow:{startRow} endRow:{endRow} stratColumn:{stratColumn} endColumn:{endColumn}");
             for (int i = startRow; i < endRow; i++)
             {
                 string contents = @"using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
+using BT;
 
 [GenerateAuthoringComponent]
-public struct {name_data} : IComponentData
+public struct {name_data} : {type_base}
 {
 {var_dec}
 }
 ";              
                 string name_data = "";
                 string var_dec = ""; 
+                string type_base = "";
                 for (int j = stratColumn; j < endColumn; j++)
                 {
                     var value = sheet.GetValue(i, j)?.ToString();
@@ -118,6 +121,15 @@ public struct {name_data} : IComponentData
                         }
                         name_data = value;
                     }
+                    else if(j == stratColumn + 1)
+                    {
+                        if(string.IsNullOrEmpty(value))
+                        {
+                            type_base = "IComponentData";
+                        }
+                        type_base = value.Replace(",", ", ");
+                        
+                    }
                     else
                     {
                         var res = value.Split(' ');
@@ -125,14 +137,17 @@ public struct {name_data} : IComponentData
                         {
                             continue;
                         }
-                        var_dec += $"\tpublic {res[0]} {res[1]};\n";
+                        var end = res[1].EndsWith("}") ? ' ' : ';'; 
+                        res[1] = res[1].Replace("{"," { ").Replace(";","; ");
+                        var_dec += $"\tpublic {res[0]} {res[1]}{end}\n";
                     }
                 }
                 if(string.IsNullOrEmpty(var_dec))
                 {
                     continue;
                 }
-                contents = contents.Replace("{name_data}", name_data).Replace("{var_dec}", var_dec);
+                contents = contents.Replace("{name_data}", name_data).Replace("{var_dec}", var_dec)
+                                   .Replace("{type_base}", type_base);
                 string path = $"{m_outputPath}\\{name_data}.cs";
                 File.WriteAllText(path, contents);
             }
