@@ -128,44 +128,44 @@ namespace BT
     }
 
     //等待节点
-    // public class WaitNode : BehaviorNode
-    // {
-    //     private float m_waitTime;
-    //     protected override void OnInitialize(Entity entity, ref EntityCommandBuffer buffer)
-    //     {
-    //         buffer.AddComponent(entity, new WaitData()
-    //         {
-    //             CurTime = 0,
-    //             TargetTime = m_waitTime,
-    //             Status = BTStatus.Running 
-    //         });
-    //     }
+    public class WaitNode : BehaviorNode
+    {
+        private float m_waitTime;
+        protected override void OnInitialize(Entity entity, ref EntityCommandBuffer buffer)
+        {
+            buffer.AddComponent(entity, new WaitData()
+            {
+                CurTime = 0,
+                TargetTime = m_waitTime,
+                Status = BTStatus.Running 
+            });
+        }
 
-    //     protected override void OnOnTerminate(Entity entity, ref EntityCommandBuffer buffer)
-    //     {
-    //         buffer.RemoveComponent<WaitData>(entity);   
-    //     }
+        protected override void OnOnTerminate(Entity entity, ref EntityCommandBuffer buffer)
+        {
+            buffer.RemoveComponent<WaitData>(entity);   
+        }
 
-    //     protected override BTStatus Update(Entity entity)
-    //     {
-    //         if(m_btStatus != BTStatus.Success && m_btStatus != BTStatus.Failure)
-    //         {
-    //             var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-    //             bool isHas = entityManager.HasComponent<WaitData>(entity);
-    //             if(isHas)
-    //             {
-    //                 var waitData = entityManager.GetComponentData<WaitData>(entity);
-    //                 m_btStatus = waitData.Status;
-    //             }
-    //             else
-    //             {
-    //                 m_btStatus = BTStatus.Running;
-    //             }
-    //         }
+        protected override BTStatus Update(Entity entity)
+        {
+            if(m_btStatus != BTStatus.Success && m_btStatus != BTStatus.Failure)
+            {
+                var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+                bool isHas = entityManager.HasComponent<WaitData>(entity);
+                if(isHas)
+                {
+                    var waitData = entityManager.GetComponentData<WaitData>(entity);
+                    m_btStatus = waitData.Status;
+                }
+                else
+                {
+                    m_btStatus = BTStatus.Running;
+                }
+            }
             
-    //         return m_btStatus;
-    //     }
-    // }
+            return m_btStatus;
+        }
+    }
 
 
 
