@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Entities;
 using UnityEngine;
 
 namespace BT
@@ -22,16 +23,19 @@ namespace BT
     //所有行为的父节点
     public abstract class Behavior
     {
-        protected abstract BTStatus Tick(Agent agent);
-        protected abstract void OnInitialize();
-        protected abstract BTStatus Update();
-        protected abstract void OnOnTerminate(BTStatus status);
+        protected abstract BTStatus Tick(Entity entity, ref EntityCommandBuffer buffer);
+        protected abstract void OnInitialize(Entity entity, ref EntityCommandBuffer buffer);
+        protected abstract void Update(Entity entity, ref EntityCommandBuffer buffer);
+        protected abstract void OnOnTerminate(Entity entity, ref EntityCommandBuffer buffer);
+        protected BTStatus m_btStatus;
 
         public BTStatus GetBTStatus() { return m_btStatus; }
-        private BTStatus m_btStatus;
     }
 
-
+    // public class WaitBehavior : Behavior
+    // {
+        
+    // }
 
 }
 

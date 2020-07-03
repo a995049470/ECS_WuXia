@@ -10,6 +10,7 @@ public class InputSystem : SystemBase
 {
     private KeyCode[] m_keyCodes;
     private Camera m_mianCamera;
+    //private EndSimulationEntityCommandBufferSystem m_system;
     protected override void OnCreate()
     {
         m_keyCodes = new KeyCode[]
@@ -23,8 +24,10 @@ public class InputSystem : SystemBase
         m_mianCamera = Camera.main;
     }
 
+
     protected override void OnUpdate()
     { 
+       
         int keyDownStates = 0;
         int keyStates = 0;
         int v0 = 0;
