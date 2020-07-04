@@ -16,6 +16,7 @@ public class Single<T> where T : new()
             return s_instance;
         }
     }
+
     
 
 }

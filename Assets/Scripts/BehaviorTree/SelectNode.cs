@@ -4,7 +4,12 @@ namespace BT
 {
     //选择节点
     public class SelectNode : BehaviorNode
-    {
+    {   
+        public SelectNode(BehaviorNode[] childs) : base(childs)
+        {
+            
+        }
+
         protected override void OnInitialize(Entity entity, ref EntityCommandBuffer buffer)
         {
             

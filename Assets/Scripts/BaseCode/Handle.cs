@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-public class Handle<T> where T : class
+public struct Handle<T> where T : class
 {
     private UInt16 m_index;
     private UInt16 m_magic;
@@ -17,6 +17,12 @@ public class Handle<T> where T : class
         }
         m_index = index;
         m_magic = s_autoMagic;
+    }
+
+    public Handle(UInt32 _handle)
+    {
+        m_index = (UInt16)(_handle >> 16);
+        m_magic = (UInt16)_handle;
     }
 
     public UInt16 GetIndex() { return m_index; }

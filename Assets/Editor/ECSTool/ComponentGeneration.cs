@@ -94,6 +94,7 @@ namespace ECSTool
                 string contents = @"using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
+using System;
 using BT;
 
 [GenerateAuthoringComponent]

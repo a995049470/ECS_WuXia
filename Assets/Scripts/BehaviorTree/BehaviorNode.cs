@@ -17,7 +17,7 @@ namespace BT
     //所有行为的父节点
     public abstract class BehaviorNode
     {
-        public BehaviorNode()
+        public  BehaviorNode()
         {
             m_btStatus = BTStatus.Invalid;
             m_childs = m_emptyNodes;

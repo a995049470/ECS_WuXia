@@ -5,8 +5,8 @@ using System;
 using BT;
 
 [GenerateAuthoringComponent]
-public struct FuYuanData : IComponentData
+public struct BehaviorTreeData : IComponentData
 {
-	public int Value;
-
+	[UnityEngine.HideInInspector]
+	public UInt32 RootHandle;
 }

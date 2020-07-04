@@ -5,8 +5,9 @@ using System;
 using BT;
 
 [GenerateAuthoringComponent]
-public struct FuYuanData : IComponentData
+public struct SleepData : IComponentData, IBehaviorData
 {
-	public int Value;
+	public float Prob;
+	public BTStatus Status { get; set; } 
 
 }

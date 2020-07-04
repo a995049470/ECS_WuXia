@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 public class HandleManager<T> : Single<HandleManager<T>> where T : class, IHandle
 {
     private List<T> m_dataList;
@@ -26,22 +27,22 @@ public class HandleManager<T> : Single<HandleManager<T>> where T : class, IHandl
         return value;
     }
 
-    public T Get(UInt32 handle)
-    {
-        T value = null;
-        UInt16 index = (UInt16)(handle >> 16);
-        UInt16 magic = (UInt16)handle;
-        if(index < m_dataList.Count && 
-           m_magicList[index] == magic)
-        {
-            value = m_dataList[index];
-        }
-        return value;
-    }
+    // public T Get(UInt32 handle)
+    // {
+    //     T value = null;
+    //     UInt16 index = (UInt16)(handle >> 16);
+    //     UInt16 magic = (UInt16)handle;
+    //     if(index < m_dataList.Count && 
+    //        m_magicList[index] == magic)
+    //     {
+    //         value = m_dataList[index];
+    //     }
+    //     return value;
+    // }
 
     public Handle<T> Put(T value)
     {
-        Handle<T> handle = null;
+        Handle<T> handle = default;
         if(m_freeSoltList.Count > 0)
         {
             UInt16 index = m_freeSoltList[0];
@@ -60,8 +61,18 @@ public class HandleManager<T> : Single<HandleManager<T>> where T : class, IHandl
         return handle;
     }
 
+    public void Free(Handle<T> handle)
+    {
+        var index = handle.GetIndex();
+        if(index < m_dataList.Count &&
+           m_magicList[index] == handle.GetMagic())
+        {
+            m_magicList[index] = 0;
+            m_dataList[index].OnFree();
+            m_dataList[index] = null;
+        }
+    }
+
     
-
-
 
 }

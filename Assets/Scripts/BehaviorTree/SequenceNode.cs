@@ -5,6 +5,11 @@ namespace BT
     //次序节点
     public class SequenceNode : BehaviorNode
     {
+        public SequenceNode(BehaviorNode[] childs) : base(childs)
+        {
+            
+        }
+        
         protected override void OnInitialize(Entity entity, ref EntityCommandBuffer buffer)
         {
             

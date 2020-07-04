@@ -3,8 +3,17 @@ using Unity.Entities;
 namespace BT
 {
     //行为树的根节点 也可以作为其他节点子节点
-    public class RootNode : BehaviorNode
+    public class RootNode : BehaviorNode, IHandle
     {
+        public RootNode(BehaviorNode[] childs) : base(childs)
+        {
+
+        }
+        public void OnFree()
+        {
+           
+        }
+
         protected override void OnInitialize(Entity entity, ref EntityCommandBuffer buffer)
         {
             
