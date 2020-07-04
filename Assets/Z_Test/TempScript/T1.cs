@@ -11,9 +11,9 @@ public unsafe class T1 : MonoBehaviour
     public int count;
     void Start()
     {
-        FixedArray<int> a = new FixedArray<int>(10);
-        a[1] = 100;
-        Debug.Log(a[1]);
+        // Debug.Log(n++);
+        // Debug.Log(++n);
+
     }
 
     // Update is called once per frame
