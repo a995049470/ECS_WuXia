@@ -40,14 +40,13 @@ namespace BT
                 if (m_btStatus == BTStatus.Invalid)
                 {
                     OnInitialize(entity, ref buffer);
-                }
+                }             
                 m_btStatus = Update(entity, ref buffer);
                 if (IsComplete())
                 {
                     OnOnTerminate(entity, ref buffer);
                 }
             }
-
             return m_btStatus;
         }
 
@@ -88,7 +87,7 @@ namespace BT
             }
         }
 
-        protected bool IsComplete()
+        public bool IsComplete()
         {
             return m_btStatus == BTStatus.Failure || m_btStatus == BTStatus.Success;
         }

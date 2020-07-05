@@ -6,6 +6,7 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using BT;   
 
+[UpdateInGroup(typeof(InitializationSystemGroup))]
 public class BehaviorTreeSystem : SystemBase
 {
     private EndSimulationEntityCommandBufferSystem m_system;
@@ -23,7 +24,7 @@ public class BehaviorTreeSystem : SystemBase
         {
             if(data.RootHandle == 0)
             {
-                data.RootHandle = BehaviorManager.Instance.TestCreateBT().GetHandle();
+                data.RootHandle = BehaviorManager.Instance.TestCreateBT_1().GetHandle();
             }
             var root = HandleManager<RootNode>.Instance.Get(new Handle<RootNode>(data.RootHandle));
             root?.Tick(entity, ref buffer);

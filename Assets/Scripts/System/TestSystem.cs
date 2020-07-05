@@ -8,8 +8,16 @@ using BT;
 
 public class TestSystem : SystemBase
 {
+    private EndSimulationEntityCommandBufferSystem m_system;
+
+    protected override void OnStartRunning()
+    {
+        m_system = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+    }
+
     protected override void OnUpdate()
     {
+        var buffer = m_system.CreateCommandBuffer();
         Entities.ForEach((Entity entity, ref EatData eatData) => 
         {
             if(eatData.Status != BTStatus.Running)
@@ -42,5 +50,6 @@ public class TestSystem : SystemBase
                 BTStatus.Success : BTStatus.Failure;
             UnityEngine.Debug.Log($"{entity} Sleep: {sleepData.Status} Prob : {sleepData.Prob}");
         }).WithoutBurst().Run();
+        //m_system.AddJobHandleForProducer(this.Dependency);
     }
 }
