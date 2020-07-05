@@ -24,7 +24,7 @@ public class BehaviorTreeSystem : SystemBase
         {
             if(data.RootHandle == 0)
             {
-                data.RootHandle = BehaviorManager.Instance.TestCreateBT_1().GetHandle();
+                data.RootHandle = BehaviorManager.Instance.TestCreateBT_2().GetHandle();
             }
             var handle = new Handle<RootNode>(data.RootHandle);
             var root = HandleManager<RootNode>.Instance.Get(handle);

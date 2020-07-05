@@ -26,7 +26,7 @@ public class TestSystem : SystemBase
             }
             eatData.Status = UnityEngine.Random.value < eatData.Prob ? 
                 BTStatus.Success : BTStatus.Failure;
-            UnityEngine.Debug.Log($"{entity} Eat: {eatData.Status} Prob : {eatData.Prob}");
+            UnityEngine.Debug.Log($"{entity} Eat: {eatData.Status} ");
         }).WithoutBurst().Run();
 
          Entities.ForEach((Entity entity, ref WashData washData) => 
@@ -37,7 +37,7 @@ public class TestSystem : SystemBase
             }
             washData.Status = UnityEngine.Random.value < washData.Prob ? 
                 BTStatus.Success : BTStatus.Failure;
-            UnityEngine.Debug.Log($"{entity} Wash: {washData.Status} Prob : {washData.Prob}");
+            UnityEngine.Debug.Log($"{entity} Wash: {washData.Status}");
         }).WithoutBurst().Run();
 
          Entities.ForEach((Entity entity, ref SleepData sleepData) => 
@@ -48,7 +48,7 @@ public class TestSystem : SystemBase
             }
             sleepData.Status = UnityEngine.Random.value < sleepData.Prob ? 
                 BTStatus.Success : BTStatus.Failure;
-            UnityEngine.Debug.Log($"{entity} Sleep: {sleepData.Status} Prob : {sleepData.Prob}");
+            UnityEngine.Debug.Log($"{entity} Sleep: {sleepData.Status}");
         }).WithoutBurst().Run();
         //m_system.AddJobHandleForProducer(this.Dependency);
     }

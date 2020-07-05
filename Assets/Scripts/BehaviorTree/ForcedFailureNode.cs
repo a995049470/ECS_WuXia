@@ -4,6 +4,11 @@ namespace BT
 {
     public class ForcedFailureNode : BehaviorNode
     {
+        public ForcedFailureNode(BehaviorNode next) : base(new BehaviorNode[] { next })
+        {
+
+        }
+        
         protected override void OnInitialize(Entity entity, ref EntityCommandBuffer buffer)
         {
 
@@ -20,9 +25,9 @@ namespace BT
         #endif
             var node = m_childs[0];
             m_btStatus = node.Tick(entity, ref buffer);
-            if (m_btStatus == BTStatus.Failure)
+            if (m_btStatus == BTStatus.Success)
             {
-                m_btStatus = BTStatus.Success;
+                m_btStatus = BTStatus.Failure;
             }
         #if UNITY_EDITOR
             node.InvaildCheck();

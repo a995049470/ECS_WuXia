@@ -14,6 +14,7 @@ namespace BT
         //Aborted,   //终止
     }
 
+
     //所有行为的父节点
     public abstract class BehaviorNode
     {
@@ -48,7 +49,7 @@ namespace BT
         public BTStatus GetBTStatus() { return m_btStatus; }
 
         //尝试重启自身
-        public bool TryRestart()
+        private bool TryRestart()
         {
             bool isRestart = false;
             if (IsComplete())
@@ -60,8 +61,8 @@ namespace BT
         }
 
 
-        //迭代重启所有子节点
-        public void IterateRestart()
+        //迭代重启自己及所有子节点
+        public void Restart()
         {
             Stack<BehaviorNode> s = new Stack<BehaviorNode>();
             s.Push(this);
@@ -69,7 +70,6 @@ namespace BT
             while (s.Count > 0)
             {
                 var node = s.Pop();
-                var status = node.GetBTStatus();
                 if (node.TryRestart())
                 {
                     var childs = node.GetChilds();

@@ -2,6 +2,8 @@ using Unity.Entities;
 
 namespace BT
 {
+    
+
     public class ActionNode<T> : BehaviorNode where T : struct, IComponentData, IBehaviorData
     {
         private T m_data;
@@ -14,7 +16,6 @@ namespace BT
         {
             
             var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-            //buffer.SetComponent(entity, m_data);
             bool isHas = entityManager.HasComponent<T>(entity);
             if (isHas)
             {
@@ -28,7 +29,7 @@ namespace BT
         }
 
         internal override void OnTerminate(Entity entity, ref EntityCommandBuffer buffer)
-        {
+        {      
             buffer.RemoveComponent<T>(entity);
         }
 
@@ -44,18 +45,7 @@ namespace BT
                 var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
                 var data = entityManager.GetComponentData<T>(entity);
                 m_btStatus = data.Status;
-                // bool isHas = entityManager.HasComponent<T>(entity);
-                // if (isHas)
-                // {
-                //     var data = entityManager.GetComponentData<T>(entity);
-                //     m_btStatus = data.Status;
-                // }
-                // else
-                // {
-                //     m_btStatus = BTStatus.Running;
-                // }
             }
-
             return m_btStatus;
         }
     }

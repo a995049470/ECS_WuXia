@@ -4,11 +4,15 @@ namespace BT
 {
     public class ForcedSuccessNode : BehaviorNode
     {
-        protected override void OnInitialize(Entity entity, ref EntityCommandBuffer buffer)
+        public ForcedSuccessNode(BehaviorNode next) : base(new BehaviorNode[] { next })
         {
 
         }
 
+        protected override void OnInitialize(Entity entity, ref EntityCommandBuffer buffer)
+        {
+            
+        }
 
         protected override BTStatus Update(Entity entity, ref EntityCommandBuffer buffer)
         {
@@ -20,9 +24,9 @@ namespace BT
         #endif
             var node = m_childs[0];
             m_btStatus = node.Tick(entity, ref buffer);
-            if (m_btStatus == BTStatus.Success)
+            if (m_btStatus == BTStatus.Failure)
             {
-                m_btStatus = BTStatus.Failure;
+                m_btStatus = BTStatus.Success;
             }
         #if UNITY_EDITOR
             node.InvaildCheck();
