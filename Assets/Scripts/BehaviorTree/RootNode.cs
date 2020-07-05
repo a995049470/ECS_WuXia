@@ -15,15 +15,33 @@ namespace BT
            
         }
 
+        //递归终止字节点 
+        public void Terminate(Entity entity, ref EntityCommandBuffer buffer)
+        {
+            Stack<BehaviorNode> s = new Stack<BehaviorNode>();
+            s.Push(this);
+            while (s.Count > 0)
+            {
+                var node = s.Pop();
+                if(node.IsComplete())
+                {
+                    node.OnTerminate(entity, ref buffer);
+                    //销毁
+                    var childs = node.GetChilds();
+                    for (int i = 0; i < childs.Length; i++)
+                    {
+                        s.Push(childs[i]);
+                    }
+                }
+            }
+        }
+
+
         protected override void OnInitialize(Entity entity, ref EntityCommandBuffer buffer)
         {
             
         }
 
-        protected override void OnOnTerminate(Entity entity, ref EntityCommandBuffer buffer)
-        {
-
-        }
 
         protected override BTStatus Update(Entity entity, ref EntityCommandBuffer buffer)
         {

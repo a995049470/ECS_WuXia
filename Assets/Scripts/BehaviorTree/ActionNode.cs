@@ -27,9 +27,9 @@ namespace BT
             m_isBufferFrame = true;
         }
 
-        protected override void OnOnTerminate(Entity entity, ref EntityCommandBuffer buffer)
+        internal override void OnTerminate(Entity entity, ref EntityCommandBuffer buffer)
         {
-            //buffer.RemoveComponent<T>(entity);
+            buffer.RemoveComponent<T>(entity);
         }
 
         protected override BTStatus Update(Entity entity, ref EntityCommandBuffer buffer)

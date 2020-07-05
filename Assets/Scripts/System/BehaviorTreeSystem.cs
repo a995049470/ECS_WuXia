@@ -26,8 +26,21 @@ public class BehaviorTreeSystem : SystemBase
             {
                 data.RootHandle = BehaviorManager.Instance.TestCreateBT_1().GetHandle();
             }
-            var root = HandleManager<RootNode>.Instance.Get(new Handle<RootNode>(data.RootHandle));
-            root?.Tick(entity, ref buffer);
+            var handle = new Handle<RootNode>(data.RootHandle);
+            var root = HandleManager<RootNode>.Instance.Get(handle);
+            if(root != null)
+            {
+                root.Tick(entity, ref buffer);
+                if(root.IsComplete())
+                {
+                    root.Terminate(entity, ref buffer);
+                    HandleManager<RootNode>.Instance.Free(handle);
+                }
+            }
+            else
+            {
+                buffer.RemoveComponent<BehaviorTreeData>(entity);
+            }
         }).WithoutBurst().Run();
         m_system.AddJobHandleForProducer(this.Dependency);
     }

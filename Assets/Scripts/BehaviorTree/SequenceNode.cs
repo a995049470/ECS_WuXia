@@ -15,10 +15,6 @@ namespace BT
             
         }
 
-        protected override void OnOnTerminate(Entity entity, ref EntityCommandBuffer buffer)
-        {
-
-        }
 
         protected override BTStatus Update(Entity entity, ref EntityCommandBuffer buffer)
         {

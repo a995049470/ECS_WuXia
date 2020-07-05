@@ -13,7 +13,7 @@ public unsafe class T1 : MonoBehaviour
     {
         // Debug.Log(n++);
         // Debug.Log(++n);
-
+        UnityEditor.EditorApplication.isPaused = true;
     }
 
     // Update is called once per frame

@@ -29,8 +29,6 @@ namespace BT
             m_childs = childs;
         }
 
-
-
         protected static BehaviorNode[] m_emptyNodes = new BehaviorNode[0];
 
         public BTStatus Tick(Entity entity, ref EntityCommandBuffer buffer)
@@ -42,10 +40,6 @@ namespace BT
                     OnInitialize(entity, ref buffer);
                 }             
                 m_btStatus = Update(entity, ref buffer);
-                if (IsComplete())
-                {
-                    OnOnTerminate(entity, ref buffer);
-                }
             }
             return m_btStatus;
         }
@@ -87,6 +81,11 @@ namespace BT
             }
         }
 
+        internal virtual void OnTerminate(Entity entity, ref EntityCommandBuffer buffer)
+        {
+            
+        }
+
         public bool IsComplete()
         {
             return m_btStatus == BTStatus.Failure || m_btStatus == BTStatus.Success;
@@ -106,10 +105,10 @@ namespace BT
             }
         }
     #endif
-
         protected abstract void OnInitialize(Entity entity, ref EntityCommandBuffer buffer);
         protected abstract BTStatus Update(Entity entity, ref EntityCommandBuffer buffer);
-        protected abstract void OnOnTerminate(Entity entity, ref EntityCommandBuffer buffer);
+        
+        
         protected BTStatus m_btStatus;
         protected BehaviorNode[] m_childs;
     }
