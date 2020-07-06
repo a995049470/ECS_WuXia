@@ -4,6 +4,7 @@ using Unity.Mathematics;
 using System;
 using BT;
 
+[Serializable]
 [GenerateAuthoringComponent]
 public struct RoundShapeData : IComponentData
 {

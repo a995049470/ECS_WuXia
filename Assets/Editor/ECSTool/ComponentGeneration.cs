@@ -29,7 +29,7 @@ namespace ECSTool
         private void LoadValue()
         {
             m_excelPath = PlayerPrefs.GetString(m_savePrefix + "m_excelPath", m_excelPath);
-            m_outputPath = PlayerPrefs.GetString(m_savePrefix + "m_outPutPath", m_outputPath);
+            m_outputPath = PlayerPrefs.GetString(m_savePrefix + "m_outputPath", m_outputPath);
         }
         
         private void OnGUI() 
@@ -76,7 +76,7 @@ namespace ECSTool
             if(paths.Length > 0)
             {
                 m_outputPath = paths[0];
-                PlayerPrefs.SetString(m_savePrefix + "m_outPutPath", m_outputPath);
+                PlayerPrefs.SetString(m_savePrefix + "m_outputPath", m_outputPath);
             }
         }
 
@@ -97,6 +97,7 @@ using Unity.Mathematics;
 using System;
 using BT;
 
+[Serializable]
 [GenerateAuthoringComponent]
 public struct {name_data} : {type_base}
 {
