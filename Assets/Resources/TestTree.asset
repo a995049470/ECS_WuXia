@@ -1,5 +1,38 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7940943718694247996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1668a70ac8d35f4c867b105b0277641, type: 3}
+  m_Name: X Sleep Action
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 568, y: 303.5}
+  ports:
+    keys:
+    - Enter
+    values:
+    - _fieldName: Enter
+      _node: {fileID: -7940943718694247996}
+      _typeQualifiedName: System.Byte, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: Next
+        node: {fileID: 150293073893637283}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  Enter: 0
+  Data:
+    Prob: 0.5
 --- !u!114 &-7623095989480361982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,7 +46,7 @@ MonoBehaviour:
   m_Name: X Until Success
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -184, y: -120}
+  position: {x: -184, y: -104}
   ports:
     keys:
     - Next
@@ -80,39 +113,6 @@ MonoBehaviour:
   Data:
     CurTime: 0
     TargetTime: 1
---- !u!114 &-3005723385016757521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1668a70ac8d35f4c867b105b0277641, type: 3}
-  m_Name: X Sleep Action
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 520.38196, y: 377.08194}
-  ports:
-    keys:
-    - Enter
-    values:
-    - _fieldName: Enter
-      _node: {fileID: -3005723385016757521}
-      _typeQualifiedName: System.Byte, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: Next
-        node: {fileID: 150293073893637283}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  Enter: 0
-  Data:
-    Prob: 0.5
 --- !u!114 &-1638470016173388345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: X Sequence
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 120, y: -136}
+  position: {x: 125.12637, y: -129.84837}
   ports:
     keys:
     - Next
@@ -186,7 +186,7 @@ MonoBehaviour:
   - {fileID: 6137925671579422869}
   - {fileID: 150293073893637283}
   - {fileID: 812067922720302065}
-  - {fileID: -3005723385016757521}
+  - {fileID: -7940943718694247996}
 --- !u!114 &150293073893637283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +215,7 @@ MonoBehaviour:
         node: {fileID: 812067922720302065}
         reroutePoints: []
       - fieldName: Enter
-        node: {fileID: -3005723385016757521}
+        node: {fileID: -7940943718694247996}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Name: X Time Run Action
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 520, y: 168}
+  position: {x: 552, y: 152}
   ports:
     keys:
     - Enter
@@ -361,7 +361,7 @@ MonoBehaviour:
   m_Name: X Wash Action
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 472, y: -8}
+  position: {x: 452.51984, y: 2.2527237}
   ports:
     keys:
     - Enter
