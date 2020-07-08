@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: X Until Success
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -184, y: -120}
+  position: {x: -194, y: -74}
   ports:
     keys:
     - Next
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Name: X Time Run Action
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 520, y: 168}
+  position: {x: 467, y: 160}
   ports:
     keys:
     - Enter
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Name: X Until Success
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -216, y: -392}
+  position: {x: -210, y: -283}
   ports:
     keys:
     - Next
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Name: X Until Success
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -120, y: 264}
+  position: {x: -118, y: 99.000015}
   ports:
     keys:
     - Next
