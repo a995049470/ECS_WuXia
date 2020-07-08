@@ -12,9 +12,9 @@ namespace ECSTool
     public class BehaviorXNodeGeneration : EditorWindow
     {
         private string m_outputPath;
-         private const string m_savePrefix = "ECS_XNode_";
+        private const string m_savePrefix = "ECS_XNode_";
+         
         [MenuItem("Tool/ECS/BehaviorXNodeGeneration")]
-        
         private static void ShowWindow()
         {
             EditorWindow.GetWindow<BehaviorXNodeGeneration>().Show();
@@ -27,7 +27,7 @@ namespace ECSTool
 
         private void LoadValue()
         {
-             m_outputPath = PlayerPrefs.GetString(m_savePrefix + "m_outputPath", m_outputPath);
+             m_outputPath = XMLUtility.Load<String>(m_savePrefix + "m_outputPath");
         }
 
 
@@ -57,7 +57,7 @@ namespace ECSTool
             if(paths.Length > 0)
             {
                 m_outputPath = paths[0];
-                PlayerPrefs.SetString(m_savePrefix + "m_outputPath", m_outputPath);
+                XMLUtility.Save(m_savePrefix + "m_outputPath", m_outputPath);
             }
         }
 

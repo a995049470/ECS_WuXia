@@ -28,8 +28,8 @@ namespace ECSTool
 
         private void LoadValue()
         {
-            m_excelPath = PlayerPrefs.GetString(m_savePrefix + "m_excelPath", m_excelPath);
-            m_outputPath = PlayerPrefs.GetString(m_savePrefix + "m_outputPath", m_outputPath);
+            m_excelPath = XMLUtility.Load<string>(m_savePrefix + "m_excelPath");
+            m_outputPath =  XMLUtility.Load<string>(m_savePrefix + "m_outputPath");
         }
         
         private void OnGUI() 
@@ -66,7 +66,7 @@ namespace ECSTool
             if(paths.Length > 0)
             {
                 m_excelPath = paths[0];
-                PlayerPrefs.SetString(m_savePrefix + "m_excelPath", m_excelPath);
+                XMLUtility.Save(m_savePrefix + "m_excelPath", m_excelPath);
             }
         }
 
@@ -76,7 +76,7 @@ namespace ECSTool
             if(paths.Length > 0)
             {
                 m_outputPath = paths[0];
-                PlayerPrefs.SetString(m_savePrefix + "m_outputPath", m_outputPath);
+                XMLUtility.Save(m_savePrefix + "m_outputPath", m_outputPath);
             }
         }
 
