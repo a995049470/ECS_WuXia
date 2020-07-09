@@ -26,7 +26,7 @@ namespace ResTool
         {
             m_spritePath = XMLUtility.Load<string>(m_prefix + "m_spritePath");
             m_outputPath = XMLUtility.Load<string>(m_prefix + "m_outputPath");
-            m_isRename = XMLUtility.Load<bool>(m_prefix + "m_isRename");
+            //m_isRename = XMLUtility.Load<bool>(m_prefix + "m_isRename");
             m_cutStr = XMLUtility.Load<string>(m_prefix + "m_cutStr");
         }
 
@@ -34,7 +34,7 @@ namespace ResTool
         {
             XMLUtility.Save(m_prefix + "m_spritePath", m_spritePath);
             XMLUtility.Save(m_prefix + "m_outputPath", m_outputPath);
-            XMLUtility.Save(m_prefix + "m_isRename", m_isRename);
+            //XMLUtility.Save(m_prefix + "m_isRename", m_isRename);
             XMLUtility.Save(m_prefix + "m_cutStr", m_cutStr);
         }
 
@@ -66,9 +66,9 @@ namespace ResTool
             // }
             // EditorGUILayout.EndHorizontal();
 
-            EditorGUILayout.BeginHorizontal();
-            m_isRename = GUILayout.Toggle(m_isRename, "是否重命名");
-            EditorGUILayout.EndHorizontal();
+            // EditorGUILayout.BeginHorizontal();
+            // m_isRename = GUILayout.Toggle(m_isRename, "是否重命名");
+            // EditorGUILayout.EndHorizontal();
             // EditorGUILayout.BeginHorizontal();
             // m_cutStr = EditorGUILayout.TextField("分割字符(有多种用;分割):", m_cutStr, GUILayout.Height(30));
             // EditorGUILayout.EndHorizontal();
@@ -102,8 +102,11 @@ namespace ResTool
                if (x.FullName.Contains(cutstr))
                {
                    var start_id = x.FullName.IndexOf(x.Name);
-                   var cut_id = x.FullName.IndexOf(cutstr) + cutstr.Length;
-                   var nf = x.FullName.Substring(0, start_id) + x.FullName.Substring(cut_id);
+                   var cut_id_1 = x.FullName.IndexOf(cutstr) + cutstr.Length;
+                   var end_str = x.FullName.Substring(cut_id_1);
+                   var cut_id_2 = end_str.IndexOf('-') + 1;
+                   var nf = x.FullName.Substring(0, start_id) + end_str.Substring(cut_id_2).Replace('-', '_');
+                   //nf = nf.Replace('-', '_');
                    File.Move(x.FullName, nf);
                }
            });
