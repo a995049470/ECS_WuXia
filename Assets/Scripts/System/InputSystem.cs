@@ -11,12 +11,12 @@ public class InputSystem : SystemBase
     private KeyCode[] m_keyCodes;
     private Camera m_mianCamera;
     //private EndSimulationEntityCommandBufferSystem m_system;
-    protected override void OnCreate()
+    protected override void OnStartRunning()
     {
         m_keyCodes = new KeyCode[]
         {
             KeyCode.Mouse0, 
-            KeyCode.S, KeyCode.W,
+            KeyCode.W, KeyCode.S,
             KeyCode.A, KeyCode.D,
             KeyCode.Alpha0, KeyCode.Alpha1,
             KeyCode.Alpha3, KeyCode.Alpha4
@@ -34,11 +34,11 @@ public class InputSystem : SystemBase
         int v1 = 0;
         var mouseScreenPos = Input.mousePosition;
         var mouseWorldPos = m_mianCamera.ScreenToWorldPoint(mouseScreenPos);
-        int2 mousePos = new int2(Mathf.RoundToInt(mouseWorldPos.x), Mathf.RoundToInt(mouseWorldPos.x));
+        int2 mousePos = new int2(Mathf.RoundToInt(mouseWorldPos.x), Mathf.RoundToInt(mouseWorldPos.y));
         for (int i = 0; i < m_keyCodes.Length; i++)
         {
-            v0 = Input.GetKeyDown(m_keyCodes[0]) ? 1 : 0;
-            v1 = Input.GetKey(m_keyCodes[0]) ? 1 : 0;
+            v0 = Input.GetKeyDown(m_keyCodes[i]) ? 1 : 0;
+            v1 = Input.GetKey(m_keyCodes[i]) ? 1 : 0;
             keyDownStates.SetBit(i, v0);
             keyStates.SetBit(i, v1);
         }
@@ -48,5 +48,6 @@ public class InputSystem : SystemBase
             inputData.KeyDownStates = keyDownStates & inputData.InputMask;
             inputData.KeyStates = keyStates & inputData.InputMask;
         }).Schedule();
+
     }
 }

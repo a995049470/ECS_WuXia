@@ -184,6 +184,8 @@ namespace ResTool
             //     Debug.Log(path);
             //     return;
             // }
+            importer.maxTextureSize = 128;
+            importer.spritePixelsPerUnit = 512;
             importer.textureType = TextureImporterType.Sprite;
             importer.mipmapEnabled = false;
             importer.isReadable = true;
