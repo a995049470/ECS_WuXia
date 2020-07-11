@@ -5,7 +5,7 @@ using System;
 namespace BT
 {   
     //当子节点返回Failure 时才会返回 Success
-    [BehaviorNodeTag]
+    [BehaviorNodeAttribute]
     public class UntilFailureNode : BehaviorNode
     {
         [SerializableNodeFieldTag]

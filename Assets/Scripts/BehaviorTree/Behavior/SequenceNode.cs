@@ -3,7 +3,7 @@ using Unity.Entities;
 namespace BT
 {
     //次序节点
-    [BehaviorNodeTag()]
+    [BehaviorNodeAttribute()]
     public class SequenceNode : BehaviorNode
     {
         public SequenceNode(BehaviorNode[] childs) : base(childs)

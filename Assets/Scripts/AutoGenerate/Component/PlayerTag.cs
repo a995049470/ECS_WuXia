@@ -6,10 +6,7 @@ using BT;
 
 [Serializable]
 [GenerateAuthoringComponent]
-public struct TimeRunData : IComponentData, IBehaviorData
+public struct PlayerTag : IComponentData
 {
-	public float CurTime;
-	public float TargetTime;
-	public BTStatus Status { get; set; } 
 
 }

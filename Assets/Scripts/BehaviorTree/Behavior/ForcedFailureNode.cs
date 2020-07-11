@@ -2,7 +2,7 @@ using Unity.Entities;
 
 namespace BT
 {
-    [BehaviorNodeTag]
+    [BehaviorNodeAttribute]
     public class ForcedFailureNode : BehaviorNode
     {
         public ForcedFailureNode(params BehaviorNode[] childs) : base(childs)

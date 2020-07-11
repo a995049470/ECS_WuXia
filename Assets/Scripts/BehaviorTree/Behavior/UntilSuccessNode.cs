@@ -4,7 +4,7 @@ namespace BT
 {
     //当子节点返回Success 时才会返回 Success
     //TODO : 如果子节点能够马上给出结果, 可能会考虑实现一帧跑多次
-    [BehaviorNodeTag]
+    [BehaviorNodeAttribute]
     public class UntilSuccessNode : BehaviorNode
     {
         [SerializableNodeFieldTag]

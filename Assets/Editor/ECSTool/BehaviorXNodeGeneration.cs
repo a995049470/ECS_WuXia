@@ -71,7 +71,7 @@ namespace ECSTool
             for (int i = 0; i < types.Length; i++)
             {
                 var t = types[i];
-                var att = t.GetCustomAttribute(typeof(BehaviorNodeTag), false) as BehaviorNodeTag;
+                var att = t.GetCustomAttribute(typeof(BehaviorNodeAttribute), false) as BehaviorNodeAttribute;
                 if(att != null)
                 {
                     string contents = @"using System.Collections;
@@ -80,7 +80,7 @@ using UnityEngine;
 
 namespace BT
 {
-    public class X{name_type} : BehaviorLinkXNode
+    public class X{name_type} : {base_type}
     {
 {vars}
         
@@ -94,12 +94,14 @@ namespace BT
                     string name_type = res[res.Length - 1];
                     string vars = "";
                     string args = "";
+                    string base_type = att.BaseType;
                     string path = $"{m_outputPath}/X{name_type}.cs";
                     var fs = t.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
                     for (int n = 0; n < fs.Length; n++)
                     {
                         var f = fs[n];
-                        if(f.GetCustomAttribute(typeof(SerializableNodeFieldTag), false) == null)
+                        var nt = f.GetCustomAttribute(typeof(SerializableNodeFieldTag), false);
+                        if(nt == null)
                         {
                             continue;
                         }
@@ -108,7 +110,8 @@ namespace BT
                         vars += $"\t\tpublic {f.FieldType} {fname};\n";
                         args += $"{fname}, ";
                     }
-                    contents = contents.Replace("{name_type}", name_type).Replace("{args}", args).Replace("{vars}", vars);
+                    contents = contents.Replace("{name_type}", name_type).Replace("{args}", args).Replace("{vars}", vars)
+                        .Replace("{base_type}", base_type);
                     File.WriteAllText(path, contents);
                 }
                 if(t.GetInterface("IBehaviorData") != null)

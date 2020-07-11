@@ -6,12 +6,13 @@ using System;
 
 
 [AttributeUsage(AttributeTargets.Class)]
-public class BehaviorNodeTag : Attribute
+public class BehaviorNodeAttribute : Attribute
 {
     // public Type[] ConstructorTypes { get; private set; }
-    public BehaviorNodeTag()
+    public string BaseType {get; private set;}
+    public BehaviorNodeAttribute(string basetype = "BehaviorLinkXNode")
     {
-        
+        BaseType = basetype;
     }
 }
 

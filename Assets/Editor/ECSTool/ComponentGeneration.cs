@@ -135,16 +135,16 @@ public struct {name_data} : {type_base}
                     else
                     {
                         var res = value.Split(' ');
-                        if(res.Length != 2)
+                        if(res.Length == 2)
                         {
-                            continue;
+                            var end = res[1].EndsWith("}") ? ' ' : ';'; 
+                            res[1] = res[1].Replace("{"," { ").Replace(";","; ");
+                            var_dec += $"\tpublic {res[0]} {res[1]}{end}\n";
                         }
-                        var end = res[1].EndsWith("}") ? ' ' : ';'; 
-                        res[1] = res[1].Replace("{"," { ").Replace(";","; ");
-                        var_dec += $"\tpublic {res[0]} {res[1]}{end}\n";
+                        
                     }
                 }
-                if(string.IsNullOrEmpty(var_dec))
+                if(string.IsNullOrEmpty(name_data))
                 {
                     continue;
                 }

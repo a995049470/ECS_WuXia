@@ -3,7 +3,7 @@ using Unity.Entities;
 namespace BT
 {
     //选择节点
-    [BehaviorNodeTag()]
+    [BehaviorNodeAttribute()]
     public class SelectNode : BehaviorNode
     {   
         public SelectNode(BehaviorNode[] childs) : base(childs)
