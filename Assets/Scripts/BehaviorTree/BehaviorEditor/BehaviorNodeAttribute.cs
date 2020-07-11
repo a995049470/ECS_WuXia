@@ -9,20 +9,20 @@ using System;
 public class BehaviorNodeAttribute : Attribute
 {
     // public Type[] ConstructorTypes { get; private set; }
-    public string BaseType {get; private set;}
-    public BehaviorNodeAttribute(string basetype = "BehaviorLinkXNode")
+    public bool IsHasNext {get; private set;}
+    public BehaviorNodeAttribute(bool isHasNext = true)
     {
-        BaseType = basetype;
+        IsHasNext = isHasNext;
     }
 }
 
 
 [AttributeUsage(AttributeTargets.Field)]
-public class SerializableNodeFieldTag : Attribute
+public class SerializableNodeFieldAttribute : Attribute
 {
     
     // public Type[] ConstructorTypes { get; private set; }
-    public SerializableNodeFieldTag()
+    public SerializableNodeFieldAttribute()
     {
         
     }

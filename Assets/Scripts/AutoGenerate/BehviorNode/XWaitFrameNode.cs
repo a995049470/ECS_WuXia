@@ -4,13 +4,14 @@ using UnityEngine;
 
 namespace BT
 {
-    public class XParallelSequenceNode : BT.XBehaviorLinkNode
+    public class XWaitFrameNode : BT.XBehaviorNode
     {
+		public System.Int32 WaitFrame;
 
         
         public override BehaviorNode GetBehaviorNode()
         {
-            return new ParallelSequenceNode(GetChilds());
+            return new WaitFrameNode(WaitFrame);
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BT
 {
-    public class XUntilSuccessNode : BehaviorLinkXNode
+    public class XUntilSuccessNode : BT.XBehaviorLinkNode
     {
 		public System.Int32 Goal;
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BT
 {
-    public class XEatActionNode : ActionXNode<EatData>
+    public class XEatActionNode : XActionNode<EatData>
     {
 
     }

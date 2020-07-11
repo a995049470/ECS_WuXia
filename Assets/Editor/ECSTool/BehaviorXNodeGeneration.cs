@@ -90,17 +90,18 @@ namespace BT
         }
     }
 }";
+                    
                     var res = t.ToString().Split('.');
                     string name_type = res[res.Length - 1];
                     string vars = "";
                     string args = "";
-                    string base_type = att.BaseType;
+                    string base_type = att.IsHasNext ? typeof(BT.XBehaviorLinkNode).ToString() : typeof(BT.XBehaviorNode).ToString();
                     string path = $"{m_outputPath}/X{name_type}.cs";
                     var fs = t.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
                     for (int n = 0; n < fs.Length; n++)
                     {
                         var f = fs[n];
-                        var nt = f.GetCustomAttribute(typeof(SerializableNodeFieldTag), false);
+                        var nt = f.GetCustomAttribute(typeof(SerializableNodeFieldAttribute), false);
                         if(nt == null)
                         {
                             continue;
@@ -112,6 +113,11 @@ namespace BT
                     }
                     contents = contents.Replace("{name_type}", name_type).Replace("{args}", args).Replace("{vars}", vars)
                         .Replace("{base_type}", base_type);
+                    if(!att.IsHasNext)
+                    {
+                        var str = args == ""? "GetChilds()" : ", GetChilds()";
+                        contents = contents.Replace(str, "");
+                    }
                     File.WriteAllText(path, contents);
                 }
                 if(t.GetInterface("IBehaviorData") != null)
@@ -122,7 +128,7 @@ using UnityEngine;
 
 namespace BT
 {
-    public class X{name_part}ActionNode : ActionXNode<{name_type}>
+    public class X{name_part}ActionNode : XActionNode<{name_type}>
     {
 
     }

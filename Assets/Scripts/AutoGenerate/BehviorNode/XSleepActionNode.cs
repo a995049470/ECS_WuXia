@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BT
 {
-    public class XSleepActionNode : ActionXNode<SleepData>
+    public class XSleepActionNode : XActionNode<SleepData>
     {
 
     }

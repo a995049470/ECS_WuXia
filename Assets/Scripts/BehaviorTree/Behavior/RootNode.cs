@@ -5,6 +5,7 @@ namespace BT
 {
     //[BehaviorNodeInfo()]
     //行为树的根节点 也可以作为其他节点子节点
+    [BehaviorNode]
     public class RootNode : BehaviorNode, IHandle
     {
         public RootNode(params BehaviorNode[] childs) : base(childs)

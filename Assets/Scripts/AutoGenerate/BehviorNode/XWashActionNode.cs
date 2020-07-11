@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BT
 {
-    public class XWashActionNode : ActionXNode<WashData>
+    public class XWashActionNode : XActionNode<WashData>
     {
 
     }

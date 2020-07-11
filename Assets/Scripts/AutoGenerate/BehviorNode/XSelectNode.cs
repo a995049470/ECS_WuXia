@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BT
 {
-    public class XSelectNode : BehaviorLinkXNode
+    public class XSelectNode : BT.XBehaviorLinkNode
     {
 
         

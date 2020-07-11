@@ -41,6 +41,12 @@ namespace BT
                     OnInitialize(entity, ref buffer);
                 }             
                 m_btStatus = Update(entity, ref buffer);
+            #if UNITY_EDITOR
+                // if(IsComplete())
+                // {
+                //     UnityEngine.Debug.Log($"{this.GetType()} {m_btStatus}");
+                // }
+            #endif
             }
             return m_btStatus;
         }

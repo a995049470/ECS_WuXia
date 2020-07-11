@@ -7,7 +7,7 @@ namespace BT
     [BehaviorNodeAttribute]
     public class UntilSuccessNode : BehaviorNode
     {
-        [SerializableNodeFieldTag]
+        [SerializableNodeFieldAttribute]
         private int m_goal;
         private int m_current;
 

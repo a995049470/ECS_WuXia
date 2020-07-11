@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace BT
 {
-    public class XParallelSequenceNode : BT.XBehaviorLinkNode
+    public class XRootNode : BT.XBehaviorLinkNode
     {
 
         
         public override BehaviorNode GetBehaviorNode()
         {
-            return new ParallelSequenceNode(GetChilds());
+            return new RootNode(GetChilds());
         }
     }
 }

@@ -11,10 +11,15 @@ namespace BT
         public RootNode GetRootNode()
         {
             RootNode root = null;
-            if(nodes?.Count > 0)
+            var count = nodes?.Count;
+            for (int i = 0; i < count; i++)
             {
-                var behaviorNode = (nodes[0] as BehaviorXNode)?.GetBehaviorNode() as BehaviorNode;
-                root = behaviorNode != null ? new RootNode(behaviorNode) : null;
+                var node = nodes[i] as XRootNode;
+                if(node != null)
+                {
+                    root = node.GetBehaviorNode() as RootNode;
+                    break;
+                }
             }
             return root;
         }
