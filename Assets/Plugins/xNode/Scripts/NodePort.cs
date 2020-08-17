@@ -221,12 +221,28 @@ namespace XNode {
             port.node.OnCreateConnection(this, port);
         }
 
-        public List<NodePort> GetConnections() {
+        public List<NodePort> GetConnections() 
+        {
             List<NodePort> result = new List<NodePort>();
             for (int i = 0; i < connections.Count; i++) {
                 NodePort port = GetConnection(i);
                 if (port != null) result.Add(port);
             }
+            return result;
+        }
+
+        //获取的节点由y从小到大排列
+        public List<NodePort> GetConnectionsOrderly() 
+        {
+            List<NodePort> result = new List<NodePort>();
+            for (int i = 0; i < connections.Count; i++) {
+                NodePort port = GetConnection(i);
+                if (port != null) result.Add(port);
+            }
+            result.Sort((x,y) =>
+            {
+                return (int)(100 * x.node.position.y - 100 * y.node.position.y);
+            });
             return result;
         }
 

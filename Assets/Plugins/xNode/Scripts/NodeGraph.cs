@@ -17,7 +17,8 @@ namespace XNode {
         }
 
         /// <summary> Add a node to the graph by type </summary>
-        public virtual Node AddNode(Type type) {
+        public virtual Node AddNode(Type type) 
+        {
             Node.graphHotfix = this;
             Node node = ScriptableObject.CreateInstance(type) as Node;
             node.graph = this;
