@@ -15,7 +15,7 @@ namespace ResTool
         private const string m_prefix = "Res_Sprite_";
         private string m_cutStr;
 
-        [MenuItem("Tool/Res/SpriteSetting")]
+        [MenuItem("Tool/图片设置")]
         private static void ShowWindow()
         {
             EditorWindow.GetWindow<SpriteSetting>().Show();
@@ -72,6 +72,7 @@ namespace ResTool
             // EditorGUILayout.BeginHorizontal();
             // m_cutStr = EditorGUILayout.TextField("分割字符(有多种用;分割):", m_cutStr, GUILayout.Height(30));
             // EditorGUILayout.EndHorizontal();
+            EditorGUILayout.Space();
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.Space();
             if (GUILayout.Button("图片转换", GUILayout.Width(100), GUILayout.Height(40)))
@@ -185,7 +186,7 @@ namespace ResTool
             //     return;
             // }
             importer.maxTextureSize = 128;
-            importer.spritePixelsPerUnit = 512;
+            importer.spritePixelsPerUnit = 128;
             importer.textureType = TextureImporterType.Sprite;
             importer.mipmapEnabled = false;
             importer.isReadable = true;

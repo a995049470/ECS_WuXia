@@ -14,7 +14,7 @@ namespace ECSTool
         private string m_outputPath;
         private const string m_savePrefix = "ECS_XNode_";
          
-        [MenuItem("Tool/ECS/BehaviorXNodeGeneration")]
+        [MenuItem("Tool/生成节点")]
         private static void ShowWindow()
         {
             EditorWindow.GetWindow<BehaviorXNodeGeneration>().Show();
@@ -41,9 +41,11 @@ namespace ECSTool
             }
             EditorGUILayout.EndHorizontal();
 
+            EditorGUILayout.Space();
+            
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.Space();
-            if(GUILayout.Button("生成行为树节点类", GUILayout.Height(60), GUILayout.Width(200)))
+            if(GUILayout.Button("生成节点", GUILayout.Height(40), GUILayout.Width(100)))
             {
                 OnNodeGenerationButtonDown();
             }
@@ -60,6 +62,17 @@ namespace ECSTool
                 XMLUtility.Save(m_savePrefix + "m_outputPath", m_outputPath);
             }
         }
+
+        // private void Clear()
+        // {
+        //     var fs = Directory.GetFiles(m_outputPath, "*.cs", SearchOption.AllDirectories);
+        //     for (int i = 0; i < fs.Length; i++)
+        //     {
+        //         Debug.Log(fs[i]);
+        //         Directory.Delete(fs[i]);
+        //     }
+            
+        // }
 
         private void OnNodeGenerationButtonDown()
         {

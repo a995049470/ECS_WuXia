@@ -5,12 +5,13 @@ using UnityEngine;
 
 namespace BT
 {
+    //节点并行执行  直到有一个成功 节点返回成功
     [BehaviorNodeAttribute]
     public class ParallelSelectNode : BehaviorNode
     {
         public ParallelSelectNode(params BehaviorNode[] childs) : base(childs)
         {
-
+            
         }
         protected override void OnInitialize(Entity entity, ref EntityCommandBuffer buffer)
         {
@@ -28,10 +29,10 @@ namespace BT
                 {
                     m_btStatus = status;
                 }
-                else if(status == BTStatus.Success && 
-                        m_btStatus != BTStatus.Running)
+                else if(status == BTStatus.Success /*&& m_btStatus != BTStatus.Running*/)
                 {
                     m_btStatus = status;
+                    break;
                 }
                 #if UNITY_EDITOR
                     node.InvaildCheck();

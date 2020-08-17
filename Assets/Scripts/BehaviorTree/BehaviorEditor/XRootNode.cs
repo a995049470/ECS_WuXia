@@ -1,10 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 namespace BT
 {
-    public abstract class XBehaviorLinkNode : XBehaviorNode
+    public class XRootNode : XBehaviorNode
     {
         [Output(backingValue = ShowBackingValue.Never)] public byte Next = 0;
-        [Input(backingValue = ShowBackingValue.Never)] public byte Enter = 0;
-        
+        public override BehaviorNode GetBehaviorNode()
+        {
+            return new RootNode(GetChilds());
+        }
         protected BehaviorNode[] GetChilds()
         {
             var nodes = GetOutputPort("Next").GetConnections();
@@ -19,7 +25,3 @@ namespace BT
         }
     }
 }
-
-
-
-

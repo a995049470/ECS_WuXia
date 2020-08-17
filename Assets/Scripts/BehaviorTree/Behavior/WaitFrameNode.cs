@@ -2,7 +2,7 @@ using Unity.Entities;
 
 namespace BT
 {
-    [BehaviorNode(false)]
+    //[BehaviorNode(false)]
     public class WaitFrameNode : BehaviorNode
     {
         public WaitFrameNode(int waitFrame)

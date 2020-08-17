@@ -14,7 +14,7 @@ namespace ECSTool
         private string m_outputPath;
         private const string m_savePrefix = "ECS_CG_";
 
-        [MenuItem("Tool/ECS/ComponentGeneration")]
+        [MenuItem("Tool/生成组件")]
         private static void ShowWindow()
         {
             EditorWindow.GetWindow<ComponentGeneration>().Show();
@@ -49,10 +49,10 @@ namespace ECSTool
                 OnOutPutlPathBorwseButtonDown();
             }
             EditorGUILayout.EndHorizontal();
-            //EditorGUILayout.Space(40);
+            EditorGUILayout.Space();
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.Space();
-            if(GUILayout.Button("生成", GUILayout.Width(100)))
+            if(GUILayout.Button("生成组件", GUILayout.Width(100), GUILayout.Height(40)))
             {
                 OnGenerationButtonDown();
             }

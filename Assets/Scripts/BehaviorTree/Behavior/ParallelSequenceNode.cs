@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace BT
 {
+    //节点并行执行  直到有一个失败 节点返回失败
     [BehaviorNodeAttribute]
     public class ParallelSequenceNode : BehaviorNode
     {
@@ -28,10 +29,10 @@ namespace BT
                 {
                     m_btStatus = status;
                 }
-                else if(status == BTStatus.Failure && 
-                        m_btStatus != BTStatus.Running)
+                else if(status == BTStatus.Failure /*&& m_btStatus != BTStatus.Running*/)
                 {
                     m_btStatus = status;
+                    break;
                 }
                 #if UNITY_EDITOR
                     node.InvaildCheck();

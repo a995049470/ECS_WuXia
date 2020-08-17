@@ -35,7 +35,7 @@ public class MoveSystem : SystemBase
 
     protected override void OnUpdate()
     {
-        float delatTime = UnityEngine.Time.deltaTime;
+        float delatTime = Time.DeltaTime;
         Entities.ForEach((ref MoveData move, in InputData input)=>
         {
             
